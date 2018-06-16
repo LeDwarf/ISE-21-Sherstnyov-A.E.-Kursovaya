@@ -17,5 +17,7 @@ namespace FurnitureFactoryService.Interfaces
         void TakeOrderInWork(OrderBindingModel model);
 
         void FinishOrder(int id);
+
+        decimal PayOrder(int id);
     }
 }

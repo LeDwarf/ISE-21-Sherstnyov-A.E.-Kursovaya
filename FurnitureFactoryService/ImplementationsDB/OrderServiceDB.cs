@@ -12,9 +12,9 @@ namespace FurnitureFactoryService.ImplementationsDB
 {
     public class OrderServiceDB : IOrderService
     {
-        private FrnitureFactoryDbContext context;
+        private FurnitureFactoryDbContext context;
 
-        public OrderServiceDB(FrnitureFactoryDbContext context)
+        public OrderServiceDB(FurnitureFactoryDbContext context)
         {
             this.context = context;
         }
@@ -69,8 +69,7 @@ namespace FurnitureFactoryService.ImplementationsDB
                     {
                         throw new Exception("Элемент не найден");
                     }
-                    element.EmployeeId = model.EmployeeId;
-                    element.DateDone = DateTime.Now;
+                    element.EmployeeId = model.EmployeeId;                    
                     element.Status = OrderStatus.Выполняется;
                     context.SaveChanges();
                     transaction.Commit();
@@ -85,20 +84,47 @@ namespace FurnitureFactoryService.ImplementationsDB
 
         public void FinishOrder(int id)
         {
-            Order element = context.Orders.FirstOrDefault(rec => rec.Id == id);
-            if (element == null)
+            using (var transaction = context.Database.BeginTransaction())
             {
-                throw new Exception("Элемент не найден");
+                try
+                {
+                    Order element = context.Orders.FirstOrDefault(rec => rec.Id == id);
+                    if (element == null)
+                    {
+                        throw new Exception("Элемент не найден");
+                    }
+                    element.DateDone = DateTime.Now;
+                    element.Status = OrderStatus.Готов;
+                    context.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
             }
-            element.Status = OrderStatus.Готов;
-            context.SaveChanges();
+            
         }
 
         public decimal PayOrder(int id)
         {
-            decimal payment = 11500;
-
-            return payment;
+            decimal salary = 11000; //минимальная
+            List<OrderViewModel> listO = GetList();
+            if (listO != null)
+            {
+                foreach (var order in listO)
+                {
+                    if (id == order.EmployeeId)
+                    {
+                        if (order.DateDone != null)
+                        {
+                            salary += order.Price / 100 * 15;
+                        }
+                    }
+                }
+            }
+            return salary;
         }
     }
 }

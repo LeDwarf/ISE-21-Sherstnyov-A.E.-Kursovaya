@@ -20,9 +20,11 @@ namespace FurnitureFactoryService.Interfaces
 
         void DelElement(int id);
 
+        void SetSalary(EmployeeBindingModel model);
+
         void SetBonus(EmployeeBindingModel model);
 
-        void SetForfeit(EmployeeBindingModel model);
+        void SetForfeit(EmployeeBindingModel model);        
 
     }
 }

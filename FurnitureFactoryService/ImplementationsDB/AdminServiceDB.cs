@@ -10,9 +10,9 @@ namespace FurnitureFactoryService.ImplementationsDB
 {
     public class AdminServiceDB : IAdminService
     {
-        private FrnitureFactoryDbContext context;
+        private FurnitureFactoryDbContext context;
 
-        public AdminServiceDB(FrnitureFactoryDbContext context)
+        public AdminServiceDB(FurnitureFactoryDbContext context)
         {
             this.context = context;
         }

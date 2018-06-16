@@ -1,0 +1,17 @@
+﻿using FurnitureFactoryService.BindingModels;
+using FurnitureFactoryService.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FurnitureFactoryService.Interfaces
+{
+    public interface IReportService
+    {
+        List<SalaryViewModel> GetSalary(ReportBindingModel model);
+
+        void SaveSalary(ReportBindingModel model);
+    }
+}

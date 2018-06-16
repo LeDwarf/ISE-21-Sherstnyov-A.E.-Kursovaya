@@ -10,9 +10,9 @@ namespace FurnitureFactoryService.ImplementationsDB
 {
     public class EmployeeServiceDB : IEmployeeService
     {
-        private FrnitureFactoryDbContext context;
+        private FurnitureFactoryDbContext context;
 
-        public EmployeeServiceDB(FrnitureFactoryDbContext context)
+        public EmployeeServiceDB(FurnitureFactoryDbContext context)
         {
             this.context = context;
         }
@@ -74,17 +74,19 @@ namespace FurnitureFactoryService.ImplementationsDB
                 throw new Exception("Элемент не найден");
             }
             element.EmployeeFIO = model.EmployeeFIO;
-            element.Salary = model.Salary;
-            element.Bonus = model.Bonus;
-            element.Forfeit = model.Forfeit;
             context.SaveChanges();
         }
 
         public void DelElement(int id)
         {
             Employee element = context.Employees.FirstOrDefault(rec => rec.Id == id);
+            Order order = context.Orders.FirstOrDefault(rec => rec.EmployeeId == id);
             if (element != null)
             {
+                if (element.Orders != null)
+                {
+                    context.Orders.Remove(order);
+                }
                 context.Employees.Remove(element);
                 context.SaveChanges();
             }
@@ -129,6 +131,29 @@ namespace FurnitureFactoryService.ImplementationsDB
                         throw new Exception("Элемент не найден");
                     }
                     element.Forfeit = model.Forfeit;
+                    context.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        public void SetSalary(EmployeeBindingModel model)
+        {
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    Employee element = context.Employees.FirstOrDefault(rec => rec.Id == model.Id);
+                    if (element == null)
+                    {
+                        throw new Exception("Элемент не найден");
+                    }
+                    element.Salary = model.Salary;
                     context.SaveChanges();
                     transaction.Commit();
                 }
