@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureFactoryModel", "FurnitureFactoryModel\FurnitureFactoryModel.csproj", "{F76EFDB2-E006-41ED-A4CE-10DEC7B1E75D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureFactoryService", "FurnitureFactoryService\FurnitureFactoryService.csproj", "{A023E40E-9EDA-4C6B-A3CF-D18D3671A81A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F76EFDB2-E006-41ED-A4CE-10DEC7B1E75D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76EFDB2-E006-41ED-A4CE-10DEC7B1E75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76EFDB2-E006-41ED-A4CE-10DEC7B1E75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76EFDB2-E006-41ED-A4CE-10DEC7B1E75D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A023E40E-9EDA-4C6B-A3CF-D18D3671A81A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A023E40E-9EDA-4C6B-A3CF-D18D3671A81A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A023E40E-9EDA-4C6B-A3CF-D18D3671A81A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A023E40E-9EDA-4C6B-A3CF-D18D3671A81A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A552D555-5C0F-4D91-859A-A57163E0D452}
+	EndGlobalSection
+EndGlobal
